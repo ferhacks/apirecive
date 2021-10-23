@@ -3,6 +3,17 @@ const cors = require('cors');
 const app = express()
 const port = process.env.PORT || 80
 app.use(cors());
+var bodyParser = require('body-parser')
+// create application/json parser
+var jsonParser = bodyParser.json()
+
+ 
+// create application/x-www-form-urlencoded parser
+
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.raw());
 const fetch = require("node-fetch")
 var fetchJson = (url, options) => new Promise(async (resolve, reject) => {
     fetch(url, options)
@@ -16,13 +27,13 @@ var fetchJson = (url, options) => new Promise(async (resolve, reject) => {
         })
   })
 
-app.get('/', (req, res) => {
+app.get('/', express.json(), (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', '*')
   req.headers['Access-Control-Allow-Origin'] = '*'
   res.send('Hello World!')
 })
-app.get('/:urlp/:urlp2', async (req, res) => {
+app.get('/:urlp/:urlp2', express.json(), async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', '*')
   req.headers['Access-Control-Allow-Origin'] = '*'
@@ -33,7 +44,7 @@ app.get('/:urlp/:urlp2', async (req, res) => {
     res.send(await fetchJson("http://" + urlp + "/" + urlp2))
   })
 
-  app.get('/:urlp', async (req, res) => {
+  app.get('/:urlp', express.json(), async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', '*')
     req.headers['Access-Control-Allow-Origin'] = '*'
@@ -43,7 +54,7 @@ app.get('/:urlp/:urlp2', async (req, res) => {
 
     res.send(await fetchJson("http://" + urlp))
   })
-  app.post('/:urlp/:urlp2', async (req, res) => {
+  app.post('/:urlp/:urlp2', express.json(), async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', '*')
     req.headers['Access-Control-Allow-Origin'] = '*'
@@ -60,7 +71,7 @@ app.get('/:urlp/:urlp2', async (req, res) => {
     },
     body: req.body}))
   })
-  app.post('/:urlp', async (req, res) => {
+  app.post('/:urlp', express.json(), async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', '*')
     req.headers['Access-Control-Allow-Origin'] = '*'
@@ -78,7 +89,7 @@ app.get('/:urlp/:urlp2', async (req, res) => {
     body: req.body}))
   })
 
-  app.options('/:urlp', async (req, res) => {
+  app.options('/:urlp', express.json(), async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', '*')
     req.headers['Access-Control-Allow-Origin'] = '*'
