@@ -1,6 +1,8 @@
 const express = require('express')
+const cors = require('cors');
 const app = express()
 const port = process.env.PORT || 80
+app.use(cors());
 const fetch = require("node-fetch")
 var fetchJson = (url, options) => new Promise(async (resolve, reject) => {
     fetch(url, options)
@@ -15,9 +17,15 @@ var fetchJson = (url, options) => new Promise(async (resolve, reject) => {
   })
 
 app.get('/', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', '*')
+  req.headers['Access-Control-Allow-Origin'] = '*'
   res.send('Hello World!')
 })
 app.get('/:urlp/:urlp2', async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', '*')
+  req.headers['Access-Control-Allow-Origin'] = '*'
     const { urlp, urlp2 } = req.params
     console.log(urlp)
     fetchJson("http://" + urlp + "/" + urlp2)
@@ -26,6 +34,9 @@ app.get('/:urlp/:urlp2', async (req, res) => {
   })
 
   app.get('/:urlp', async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', '*')
+    req.headers['Access-Control-Allow-Origin'] = '*'
     const { urlp } = req.params
     console.log(urlp)
     fetchJson("http://" + urlp)
@@ -33,6 +44,9 @@ app.get('/:urlp/:urlp2', async (req, res) => {
     res.send(await fetchJson("http://" + urlp))
   })
   app.post('/:urlp/:urlp2', async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', '*')
+    req.headers['Access-Control-Allow-Origin'] = '*'
     const { urlp, urlp2 } = req.params
     fetchJson("http://" + urlp  + "/" + urlp2, {method: 'POST',
     headers: {
@@ -47,6 +61,9 @@ app.get('/:urlp/:urlp2', async (req, res) => {
     body: req.body}))
   })
   app.post('/:urlp', async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', '*')
+    req.headers['Access-Control-Allow-Origin'] = '*'
     const { urlp } = req.params
     fetchJson("http://" + urlp, {method: 'POST',
     headers: {
@@ -62,6 +79,9 @@ app.get('/:urlp/:urlp2', async (req, res) => {
   })
 
   app.options('/:urlp', async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', '*')
+    req.headers['Access-Control-Allow-Origin'] = '*'
     const { urlp } = req.params
     fetchJson(urlp)
 
