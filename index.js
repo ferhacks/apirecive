@@ -17,7 +17,7 @@ app.use(bodyParser.raw());
 const fetch = require("node-fetch")
 var fetchJson = (url, options) => new Promise(async (resolve, reject) => {
     fetch(url, options)
-        .then(response => response.json())
+        .then(response => response.text())
         .then(json => {
             // console.log(json)
             resolve(json)
@@ -48,7 +48,7 @@ app.get('/:urlp/:urlp2/:urlp3', express.json(), async (req, res) => {
   res.setHeader('Access-Control-Allow-Headers', '*')
   req.headers['Access-Control-Allow-Origin'] = '*'
     const { urlp, urlp2, urlp3 } = req.params
-    console.log(urlp)
+    console.log("http://" + urlp + "/" + urlp2 + "/" + urlp3)
    // fetchJson("http://" + urlp + "/" + urlp2)
 
     res.send(await fetchJson("http://" + urlp + "/" + urlp2 + "/" + urlp3))
