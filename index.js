@@ -63,13 +63,13 @@ app.get('/:urlp/:urlp2', express.json(), async (req, res) => {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: req.body})
+    body: JSON.stringify(req.body)})
 
     res.send(await fetchJson("http://" + urlp  + "/" + urlp2, {method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: req.body}))
+    body: JSON.stringify(req.body)}))
   })
   app.post('/:urlp', express.json(), async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -80,13 +80,13 @@ app.get('/:urlp/:urlp2', express.json(), async (req, res) => {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: req.body})
+    body: JSON.stringify(req.body)})
 
     res.send(await fetchJson("http://" + urlp, {method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: req.body}))
+    body: JSON.stringify(req.body)}))
   })
 
   app.options('/:urlp', express.json(), async (req, res) => {
