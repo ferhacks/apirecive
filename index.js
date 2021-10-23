@@ -34,7 +34,7 @@ app.get('*', express.json(), async (req, res) => {
  var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
  console.log(req.originalUrl)
   var s2 = req.originalUrl.substring(1);
-  res.send(await fetchJson(s2))
+  res.send(await fetchJson("http://" + s2))
 })
 app.post('*', express.json(), async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -43,7 +43,7 @@ app.post('*', express.json(), async (req, res) => {
  var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
  console.log(req.originalUrl)
  var s2 = req.originalUrl.substring(1);
-  res.send(await fetchJson(s2, {method: 'POST',
+  res.send(await fetchJson("http://" + s2, {method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
