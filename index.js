@@ -31,6 +31,8 @@ app.get('*', express.json(), (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', '*')
   req.headers['Access-Control-Allow-Origin'] = '*'
+ var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+ console.log(fullUrl)
   res.send('Hello World!')
 })
 /*
