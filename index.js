@@ -27,12 +27,13 @@ var fetchJson = (url, options) => new Promise(async (resolve, reject) => {
         })
   })
 
-app.get('/', express.json(), (req, res) => {
+app.get('*', express.json(), (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', '*')
   req.headers['Access-Control-Allow-Origin'] = '*'
   res.send('Hello World!')
 })
+/*
 app.get('/:urlp/:urlp2', express.json(), async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', '*')
@@ -106,12 +107,12 @@ app.get('/:urlp/:urlp2/:urlp3/:urlp4/:urlp5', express.json(), async (req, res) =
     res.setHeader('Access-Control-Allow-Headers', '*')
     req.headers['Access-Control-Allow-Origin'] = '*'
     const { urlp, urlp2, urlp3 } = req.params
-    /*fetchJson("http://" + urlp  + "/" + urlp2, {method: 'POST',
+    fetchJson("http://" + urlp  + "/" + urlp2, {method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(req.body)})
-*/
+
     res.send(await fetchJson("http://" + urlp  + "/" + urlp2 + "/" + urlp3, {method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -123,12 +124,12 @@ app.get('/:urlp/:urlp2/:urlp3/:urlp4/:urlp5', express.json(), async (req, res) =
     res.setHeader('Access-Control-Allow-Headers', '*')
     req.headers['Access-Control-Allow-Origin'] = '*'
     const { urlp, urlp2, urlp3,urlp4 } = req.params
-    /*fetchJson("http://" + urlp  + "/" + urlp2, {method: 'POST',
+    fetchJson("http://" + urlp  + "/" + urlp2, {method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(req.body)})
-*/
+
     res.send(await fetchJson("http://" + urlp  + "/" + urlp2 + "/" + urlp3 + "/" + urlp4, {method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -140,12 +141,12 @@ app.get('/:urlp/:urlp2/:urlp3/:urlp4/:urlp5', express.json(), async (req, res) =
     res.setHeader('Access-Control-Allow-Headers', '*')
     req.headers['Access-Control-Allow-Origin'] = '*'
     const { urlp, urlp2, urlp3,urlp4,urlp5 } = req.params
-    /*fetchJson("http://" + urlp  + "/" + urlp2, {method: 'POST',
+    fetchJson("http://" + urlp  + "/" + urlp2, {method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(req.body)})
-*/
+
     res.send(await fetchJson("http://" + urlp  + "/" + urlp2 + "/" + urlp3 + "/" + urlp4 + "/" + urlp5, {method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -179,6 +180,7 @@ app.get('/:urlp/:urlp2/:urlp3/:urlp4/:urlp5', express.json(), async (req, res) =
 
     res.send("OK")
   })
+  */
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
