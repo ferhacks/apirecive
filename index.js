@@ -49,7 +49,7 @@ app.post('*', express.json(), async (req, res) => {
     },
     body: JSON.stringify(req.body)}))
 })
-app.option('*', express.json(), async (req, res) => {
+app.options('*', express.json(), async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', '*')
   req.headers['Access-Control-Allow-Origin'] = '*'
