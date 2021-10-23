@@ -54,6 +54,26 @@ app.get('/:urlp/:urlp2/:urlp3', express.json(), async (req, res) => {
     res.send(await fetchJson("http://" + urlp + "/" + urlp2 + "/" + urlp3))
   })
 
+app.get('/:urlp/:urlp2/:urlp3/:urlp4', express.json(), async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', '*')
+  req.headers['Access-Control-Allow-Origin'] = '*'
+    const { urlp, urlp2, urlp3, urlp4 } = req.params
+    console.log("http://" + urlp + "/" + urlp2 + "/" + urlp3)
+   // fetchJson("http://" + urlp + "/" + urlp2)
+
+    res.send(await fetchJson("http://" + urlp + "/" + urlp2 + "/" + urlp3 + "/" + urlp4))
+  })
+app.get('/:urlp/:urlp2/:urlp3/:urlp4/:urlp5', express.json(), async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', '*')
+  req.headers['Access-Control-Allow-Origin'] = '*'
+    const { urlp, urlp2, urlp3, urlp4, urlp5 } = req.params
+    console.log("http://" + urlp + "/" + urlp2 + "/" + urlp3)
+   // fetchJson("http://" + urlp + "/" + urlp2)
+
+    res.send(await fetchJson("http://" + urlp + "/" + urlp2 + "/" + urlp3 + "/" + urlp4 + "/" + urlp5))
+  })
   app.get('/:urlp', express.json(), async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', '*')
@@ -93,6 +113,40 @@ app.get('/:urlp/:urlp2/:urlp3', express.json(), async (req, res) => {
     body: JSON.stringify(req.body)})
 */
     res.send(await fetchJson("http://" + urlp  + "/" + urlp2 + "/" + urlp3, {method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(req.body)}))
+  })
+  app.post('/:urlp/:urlp2/:urlp3/:urlp4', express.json(), async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', '*')
+    req.headers['Access-Control-Allow-Origin'] = '*'
+    const { urlp, urlp2, urlp3,urlp4 } = req.params
+    /*fetchJson("http://" + urlp  + "/" + urlp2, {method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(req.body)})
+*/
+    res.send(await fetchJson("http://" + urlp  + "/" + urlp2 + "/" + urlp3 + "/" + urlp4, {method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(req.body)}))
+  })
+  app.post('/:urlp/:urlp2/:urlp3/:urlp4/:urlp5', express.json(), async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', '*')
+    req.headers['Access-Control-Allow-Origin'] = '*'
+    const { urlp, urlp2, urlp3,urlp4,urlp5 } = req.params
+    /*fetchJson("http://" + urlp  + "/" + urlp2, {method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(req.body)})
+*/
+    res.send(await fetchJson("http://" + urlp  + "/" + urlp2 + "/" + urlp3 + "/" + urlp4 + "/" + urlp5, {method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
