@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = process.env.APP_PORT || 80
+const port = process.env.PORT || 80
 const fetch = require("node-fetch")
 var fetchJson = (url, options) => new Promise(async (resolve, reject) => {
     fetch(url, options)
