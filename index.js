@@ -27,7 +27,7 @@ var fetchJson = (url, options) => new Promise(async (resolve, reject) => {
         })
   })
 
-app.get('*', express.json(), (req, res) => {
+app.get('*', express.json(), async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', '*')
   req.headers['Access-Control-Allow-Origin'] = '*'
@@ -35,6 +35,28 @@ app.get('*', express.json(), (req, res) => {
  console.log(fullUrl)
  
   res.send(await fetchJson(req.originalUrl))
+})
+app.post('*', express.json(), async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', '*')
+  req.headers['Access-Control-Allow-Origin'] = '*'
+ var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+ console.log(fullUrl)
+ 
+  res.send(await fetchJson(req.originalUrl, {method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(req.body)}))
+})
+app.option('*', express.json(), async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', '*')
+  req.headers['Access-Control-Allow-Origin'] = '*'
+ var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+ console.log(fullUrl)
+ 
+  res.send("ok")
 })
 /*
 app.get('/:urlp/:urlp2', express.json(), async (req, res) => {
