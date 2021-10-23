@@ -25,6 +25,13 @@ app.get('/:urlp/:urlp2', async (req, res) => {
     res.send(await fetchJson("http://" + urlp + "/" + urlp2))
   })
 
+  app.get('/:urlp', async (req, res) => {
+    const { urlp } = req.params
+    console.log(urlp)
+    fetchJson("http://" + urlp)
+
+    res.send(await fetchJson("http://" + urlp))
+  })
   app.post('/:urlp/:urlp2', async (req, res) => {
     const { urlp, urlp2 } = req.params
     fetchJson("http://" + urlp  + "/" + urlp2, {method: 'POST',
@@ -34,6 +41,20 @@ app.get('/:urlp/:urlp2', async (req, res) => {
     body: req.body})
 
     res.send(await fetchJson("http://" + urlp  + "/" + urlp2, {method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: req.body}))
+  })
+  app.post('/:urlp', async (req, res) => {
+    const { urlp } = req.params
+    fetchJson("http://" + urlp, {method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: req.body})
+
+    res.send(await fetchJson("http://" + urlp, {method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
