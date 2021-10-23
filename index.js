@@ -33,7 +33,8 @@ app.get('*', express.json(), (req, res) => {
   req.headers['Access-Control-Allow-Origin'] = '*'
  var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
  console.log(fullUrl)
-  res.send('Hello World!')
+ 
+  res.send(await fetchJson(req.originalUrl))
 })
 /*
 app.get('/:urlp/:urlp2', express.json(), async (req, res) => {
